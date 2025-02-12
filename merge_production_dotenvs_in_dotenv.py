@@ -8,6 +8,7 @@ PRODUCTION_DOTENVS_DIR = BASE_DIR / ".envs" / ".production"
 PRODUCTION_DOTENV_FILES = [
     PRODUCTION_DOTENVS_DIR / ".django",
     PRODUCTION_DOTENVS_DIR / ".postgres",
+    PRODUCTION_DOTENVS_DIR / ".dockerHub",
 ]
 DOTENV_FILE = BASE_DIR / ".env"
 
