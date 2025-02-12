@@ -32,7 +32,7 @@ jobs:
   # With no caching at all the entire ci process takes 3m to complete!
   pytest:
     runs-on: ubuntu-latest
-    if: false
+    if: "!contains(github.event.commits[0].message, '[skip test]')"
 
     steps:
       - name: Checkout Code Repository
