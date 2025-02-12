@@ -42,8 +42,15 @@ jobs:
       - name: Run Django Tests
         run: docker compose -f docker-compose.local.yml run django pytest
 
-      - name: Check coverage
-        run: docker compose -f docker-compose.local.yml run --rm django coverage html
+      - name: Run Tests with Coverage
+        run: docker compose -f docker-compose.local.yml run --rm django sh -c "coverage run -m pytest && coverage report && coverage html"
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: htmlcov/
+          retention-days: 7
 
       - name: Tear down the Stack
         run: docker compose -f docker-compose.local.yml down
