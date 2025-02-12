@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=fuel_tracker
+POSTGRES_USER=bJcTklSXAWFcCqzeaqvifYzjeCYnrWcl
+POSTGRES_PASSWORD=TIhk16xI9yzmRJeO04vA459a6XgtCvwZiUv4knVOyIWUfky6m5zUUEKnKGntJc8b
