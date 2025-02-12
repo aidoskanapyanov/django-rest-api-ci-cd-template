@@ -22,7 +22,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  pytest:
+  pytest-and-coverage:
     runs-on: ubuntu-latest
     if: "!contains(github.event.commits[0].message, '[skip test]')"
 
@@ -41,6 +41,9 @@ jobs:
 
       - name: Run Django Tests
         run: docker compose -f docker-compose.local.yml run django pytest
+
+      - name: Check coverage
+        run: docker compose -f docker-compose.local.yml run coverage html
 
       - name: Tear down the Stack
         run: docker compose -f docker-compose.local.yml down
