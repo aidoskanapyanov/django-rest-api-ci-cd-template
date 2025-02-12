@@ -51,7 +51,7 @@ Download and view the latest coverage report:
 gh run list --workflow=tests.yml
 
 # Download coverage artifact (replace RUN_ID)
-gh run download RUN_ID -D cov-arts --name coverage-report
+gh run download -D cov-arts --name coverage-report
 
 # View coverage report in browser
 python -m http.server -d cov-arts
