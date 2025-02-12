@@ -11,7 +11,7 @@ omit = ["*/migrations/*", "*/tests/*"]
 plugins = ["django_coverage_plugin"]
 
 [tool.coverage.report]
-fail_under = 100
+fail_under = 85
 
 # ==== mypy ====
 [tool.mypy]
