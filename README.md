@@ -7,6 +7,10 @@ Django REST API for managing KAMI Airlines aircraft fuel consumption and flight 
 
 License: MIT
 
+## Table Of Contents:
+
+- [💻 Project Design Spec](docs/project-design-specifications.md)
+
 ## Commands
 
 ### Type checks
