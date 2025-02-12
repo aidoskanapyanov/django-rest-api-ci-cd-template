@@ -31,8 +31,20 @@ jobs:
       - name: Checkout Code Repository
         uses: actions/checkout@v4
 
-      - name: Build the Stack
-        run: docker compose -f docker-compose.local.yml build django
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build and cache docker compose
+        uses: docker/bake-action@v3
+        with:
+          push: false
+          load: true
+          files: docker-compose.local.yml
+          set: |
+            django.cache-from=type=gha,scope=django-cache
+            django.cache-to=type=gha,scope=django-cache,mode=max
+            postgres.cache-from=type=gha,scope=postgres-cache
+            postgres.cache-to=type=gha,scope=postgres-cache,mode=max
 
       - name: Check DB Migrations
         run: docker compose -f docker-compose.local.yml run --rm django python manage.py makemigrations --check
