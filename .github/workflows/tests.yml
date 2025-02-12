@@ -44,9 +44,7 @@ jobs:
         run: docker compose -f docker-compose.local.yml run django pytest
 
       - name: Run Tests with Coverage
-        run: |
-          docker compose -f docker-compose.local.yml run --rm django sh -c "coverage run -m pytest && coverage report && coverage html"
-          docker compose -f docker-compose.local.yml cp django:/app/htmlcov .
+        run: docker compose -f docker-compose.local.yml run --rm django sh -c "coverage run -m pytest && coverage report && coverage html"
 
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v4
