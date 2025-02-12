@@ -10,6 +10,8 @@ include = ["fuel_tracker/**"]
 omit = ["*/migrations/*", "*/tests/*"]
 plugins = ["django_coverage_plugin"]
 
+[tool.coverage.report]
+fail_under = 100
 
 # ==== mypy ====
 [tool.mypy]
