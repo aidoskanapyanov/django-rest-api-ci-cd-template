@@ -127,3 +127,6 @@ extend-unsafe-fixes = ["UP038"]
 
 [tool.ruff.lint.isort]
 force-single-line = true
+
+[tool.black]
+line-length = 79

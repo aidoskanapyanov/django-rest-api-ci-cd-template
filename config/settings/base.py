@@ -10,10 +10,10 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 APPS_DIR = BASE_DIR / "fuel_tracker"
 env = environ.Env()
 
-READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
+READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=True)
 if READ_DOT_ENV_FILE:
     # OS environment variables take precedence over variables from .env
-    env.read_env(str(BASE_DIR / ".env"))
+    env.read_env(str(BASE_DIR / ".env.local"))
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -85,6 +85,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "fuel_tracker.users",
+    "fuel_tracker.calculator",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -125,8 +126,12 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
 ]
 
 # MIDDLEWARE
@@ -236,7 +241,10 @@ ADMINS = [("""Aidos Kanapyanov""", "aidos.kanapyanov2@gmail.com")]
 MANAGERS = ADMINS
 # https://cookiecutter-django.readthedocs.io/en/latest/settings.html#other-environment-settings
 # Force the `admin` sign in process to go through the `django-allauth` workflow
-DJANGO_ADMIN_FORCE_ALLAUTH = env.bool("DJANGO_ADMIN_FORCE_ALLAUTH", default=False)
+DJANGO_ADMIN_FORCE_ALLAUTH = env.bool(
+    "DJANGO_ADMIN_FORCE_ALLAUTH",
+    default=False,
+)
 
 # LOGGING
 # ------------------------------------------------------------------------------
@@ -267,7 +275,10 @@ REDIS_SSL = REDIS_URL.startswith("rediss://")
 
 # django-allauth
 # ------------------------------------------------------------------------------
-ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
+ACCOUNT_ALLOW_REGISTRATION = env.bool(
+    "DJANGO_ACCOUNT_ALLOW_REGISTRATION",
+    True,
+)
 # https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_LOGIN_METHODS = {"username"}
 # https://docs.allauth.org/en/latest/account/configuration.html
@@ -281,7 +292,9 @@ ACCOUNT_FORMS = {"signup": "fuel_tracker.users.forms.UserSignupForm"}
 # https://docs.allauth.org/en/latest/socialaccount/configuration.html
 SOCIALACCOUNT_ADAPTER = "fuel_tracker.users.adapters.SocialAccountAdapter"
 # https://docs.allauth.org/en/latest/socialaccount/configuration.html
-SOCIALACCOUNT_FORMS = {"signup": "fuel_tracker.users.forms.UserSocialSignupForm"}
+SOCIALACCOUNT_FORMS = {
+    "signup": "fuel_tracker.users.forms.UserSocialSignupForm",
+}
 
 # django-rest-framework
 # -------------------------------------------------------------------------------
@@ -291,7 +304,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ),
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    # "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
@@ -304,7 +317,7 @@ SPECTACULAR_SETTINGS = {
     "TITLE": "Airplane Fuel Tracker REST API with Django API",
     "DESCRIPTION": "Documentation of API endpoints of Airplane Fuel Tracker REST API with Django",
     "VERSION": "1.0.0",
-    "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
+    # "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
     "SCHEMA_PATH_PREFIX": "/api/",
 }
 # Your stuff...
