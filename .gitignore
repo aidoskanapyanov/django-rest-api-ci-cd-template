@@ -276,3 +276,4 @@ fuel_tracker/media/
 .envs/*
 !.envs/.local/
 cov-arts
+notes
