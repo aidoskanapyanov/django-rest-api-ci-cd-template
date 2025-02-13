@@ -14,7 +14,7 @@ urlpatterns = [
 
 # API URLS
 urlpatterns += [
-    # DRF auth token
+    path("api/", include("config.api_router")),
     path("api/auth-token/", obtain_auth_token),
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
     path(
