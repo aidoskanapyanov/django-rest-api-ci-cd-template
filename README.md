@@ -1,6 +1,7 @@
 # Airplane Fuel Tracker REST API with Django
 
-Django REST API for managing KAMI Airlines aircraft fuel consumption and flight duration calculations.
+Django REST API for managing KAMI Airlines aircraft fuel
+consumption and flight duration calculations.
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
@@ -8,27 +9,83 @@ Django REST API for managing KAMI Airlines aircraft fuel consumption and flight 
 
 License: MIT
 
-## Table Of Contents:
+## Documentation
 
-- [💻 Project Design Spec](docs/project-design-specifications.md)
-- [🛠️ Continuous Integration](docs/continuous-integration.md)
+For detailed information about the project, please check:
 
-## Commands
+- [💻 Project Design Specifications](docs/project-design-specifications.md)
+- [🛠️ Continuous Integration Setup](docs/continuous-integration.md)
 
-### Type checks
+## Running Locally
 
-Running type checks with mypy:
+### Without Docker
 
-    $ mypy fuel_tracker
+#### Prerequisites
 
-### Test coverage
+```bash
+# Start PostgreSQL database
+docker run -d \
+    --name some-postgres \
+    -e POSTGRES_PASSWORD=postgres \
+    --rm \
+    -p 5432:5432 \
+    docker.io/postgres:16
+```
 
-To run the tests, check your test coverage, and generate an HTML coverage report:
+#### Setup and Run
 
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
+```bash
+# Install dependencies
+python -m pip install -r requirements/local.txt
 
-### Running tests with pytest
+# Setup database
+python manage.py migrate
 
-    $ pytest
+# Collect static files
+python manage.py collectstatic
+```
+
+#### Development Commands
+
+```bash
+# Run tests
+pytest
+
+# Type checking
+mypy fuel_tracker
+
+# Test coverage
+coverage run -m pytest
+coverage html
+```
+
+### With Docker
+
+#### Setup and Run
+
+```bash
+# Build the stack
+docker compose -f docker-compose.local.yml build
+
+# Start services
+docker compose -f docker-compose.local.yml up
+
+# Setup database
+docker compose -f docker-compose.local.yml run --rm django python manage.py migrate
+```
+
+#### Development Commands
+
+```bash
+# Run tests
+docker compose -f docker-compose.local.yml run --rm django pytest
+
+# Type checking
+docker compose -f docker-compose.local.yml run --rm django mypy
+
+# Test coverage
+docker compose -f docker-compose.local.yml run --rm django coverage run -m pytest
+docker compose -f docker-compose.local.yml run --rm django coverage html
+open htmlcov/index.html
+
+```
