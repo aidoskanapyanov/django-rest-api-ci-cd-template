@@ -11,6 +11,7 @@ License: MIT
 ## Table Of Contents:
 
 - [💻 Project Design Spec](docs/project-design-specifications.md)
+- [🛠️ Continuous Integration](docs/continuous-integration.md)
 
 ## Commands
 

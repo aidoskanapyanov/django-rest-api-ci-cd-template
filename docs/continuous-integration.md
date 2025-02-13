@@ -17,6 +17,7 @@ Key steps:
 - Runs pytest suite
 - Generates coverage reports
 - Uploads coverage artifacts
+- Updates coverage badge
 
 ## 2. Pre-commit Workflow (`pre-commit.yml`)
 
@@ -60,3 +61,10 @@ python -m http.server -d cov-arts
 Then open `http://localhost:8000` in your browser to view the coverage report.
 
 Note: Coverage artifacts are retained for 7 days.
+
+## Coverage Badge
+
+The tests workflow automatically generates and updates a coverage badge
+(`coverage.svg`) in the repository root. This badge is updated on every
+successful test run and provides a quick visual indicator of the project's
+test coverage percentage.
