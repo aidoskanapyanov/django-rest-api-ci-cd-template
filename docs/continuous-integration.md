@@ -48,10 +48,7 @@ gh workflow run pre-commit.yml
 Download and view the latest coverage report:
 
 ```bash
-# List workflow runs to get run ID
-gh run list --workflow=tests.yml
-
-# Download coverage artifact (replace RUN_ID)
+# Download coverage artifact
 gh run download -D cov-arts --name coverage-report
 
 # View coverage report in browser
