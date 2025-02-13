@@ -43,6 +43,9 @@ python manage.py migrate
 
 # Collect static files
 python manage.py collectstatic
+
+# Run server, and open http://localhost:8000/api/docs
+python manage.py runserver
 ```
 
 #### Development Commands
