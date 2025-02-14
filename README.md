@@ -11,13 +11,13 @@ consumption and flight duration calculations.
 
 For detailed information about the project, please check:
 
-- [💻 Project Design Specifications](docs/project-design-specifications.md)
+- [💻 Project Design Specifications](docs/project-design-specifications.md)<br>
   Architecture, data models, and API endpoints documentation
 
-- [🛠️ Continuous Integration Setup](docs/continuous-integration.md)
+- [🛠️ Continuous Integration Setup](docs/continuous-integration.md)<br>
   Pre-commit hooks configuration and automated testing pipeline
 
-- [🚀 Continuous Delivery Setup](docs/continuous-delivery.md)
+- [🚀 Continuous Delivery Setup](docs/continuous-delivery.md)<br>
   Docker image build, DockerHub publishing, and DigitalOcean Docker Swarm deployment
 
 ## 🛠️ Tech Stack
