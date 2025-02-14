@@ -74,6 +74,7 @@ jobs:
         uses: serversideup/github-action-docker-swarm-deploy@v3
         with:
           docker_compose_file_path: -c docker-compose.production.yml
+          ssh_deploy_user: root
           ssh_deploy_private_key: ${{ secrets.DIGITAL_OCEAN_SSH_PRIVATE_KEY }}
           ssh_remote_hostname: ${{ secrets.DIGITAL_OCEAN_IP_ADDRESS }}
           registry-username: ${{ secrets.DOCKERHUB_USERNAME }}
