@@ -80,3 +80,4 @@ jobs:
           registry-username: ${{ secrets.DOCKERHUB_USERNAME }}
           registry-token: ${{ secrets.DOCKERHUB_TOKEN }}
           stack_name: fuel-tracker
+          env_file_base64: "${{ secrets.ENV_FILE_BASE64 }}"

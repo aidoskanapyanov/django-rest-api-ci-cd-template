@@ -12,6 +12,7 @@ PRODUCTION_DOTENV_FILES = [
     PRODUCTION_DOTENVS_DIR / ".githubToken",
     PRODUCTION_DOTENVS_DIR / ".imageNames",
     PRODUCTION_DOTENVS_DIR / ".digitalOcean",
+    PRODUCTION_DOTENVS_DIR / ".envFile",
 ]
 DOTENV_FILE = BASE_DIR / ".env"
 
