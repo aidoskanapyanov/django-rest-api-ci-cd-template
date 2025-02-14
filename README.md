@@ -35,6 +35,13 @@ For detailed information about the project, please check:
 - **Coverage.py**: Code coverage measurement
 - **pre-commit**: Git hooks framework for code quality checks
 
+### Security & SSL
+
+- **Traefik**: Modern reverse proxy and load balancer
+- **Let's Encrypt**: Automatic SSL certificate provisioning
+  - ACME protocol for automated certificate issuance and renewal
+  - Zero-downtime certificate rotation
+
 ### Code Quality & Formatting
 
 - **Black**: Uncompromising Python code formatter
@@ -46,6 +53,9 @@ For detailed information about the project, please check:
 - **Docker**: Container platform
 - **Docker Compose**: Multi-container development environments
 - **Docker Swarm**: Container orchestration for production
+  - Zero-downtime deployments with rolling updates
+  - Automatic service rollbacks on failure
+  - Health checks and self-healing capabilities
 - **GitHub Actions**: CI/CD automation
 - **Neovim**: Blazingly fast, extensible code editor
 
