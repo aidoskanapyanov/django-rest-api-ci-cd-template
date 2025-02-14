@@ -314,6 +314,9 @@ CORS_URLS_REGEX = r"^/api/.*$"
 # By Default swagger ui is available only to admin user(s). You can change permission classes to change that
 # See more configuration options at https://drf-spectacular.readthedocs.io/en/latest/settings.html#settings
 SPECTACULAR_SETTINGS = {
+    "SWAGGER_UI_DIST": "SIDECAR",
+    "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
+    "REDOC_DIST": "SIDECAR",
     "TITLE": "Airplane Fuel Tracker REST API with Django API",
     "DESCRIPTION": "Documentation of API endpoints of Airplane Fuel Tracker REST API with Django",
     "VERSION": "1.0.0",
