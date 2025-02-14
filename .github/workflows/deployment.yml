@@ -22,6 +22,7 @@ env:
   NGINX_IMAGE: ${{ secrets.NGINX_IMAGE }}
   POSTGRES_IMAGE: ${{ secrets.POSTGRES_IMAGE }}
   TRAEFIK_IMAGE: ${{ secrets.TRAEFIK_IMAGE }}
+  DJANGO_READ_DOT_ENV_FILE: ${{ secrets.DJANGO_READ_DOT_ENV_FILE }}
 
 on:
   workflow_run:
