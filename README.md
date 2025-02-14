@@ -7,16 +7,53 @@ consumption and flight duration calculations.
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 ![coverage badge](./coverage.svg)
 
-License: MIT
-
-## Documentation
+## 📚 Documentation
 
 For detailed information about the project, please check:
 
 - [💻 Project Design Specifications](docs/project-design-specifications.md)
-- [🛠️ Continuous Integration Setup](docs/continuous-integration.md)
+  Architecture, data models, and API endpoints documentation
 
-## Running Locally
+- [🛠️ Continuous Integration Setup](docs/continuous-integration.md)
+  Pre-commit hooks configuration and automated testing pipeline
+
+- [🚀 Continuous Delivery Setup](docs/continuous-delivery.md)
+  Docker image build, DockerHub publishing, and DigitalOcean Docker Swarm deployment
+
+## 🛠️ Tech Stack
+
+### Backend Framework & API
+
+- **Django**: Python web framework for rapid development
+- **Django REST Framework**: Powerful toolkit for building Web APIs
+- **DRF-Spectacular**: OpenAPI/Swagger documentation generator
+
+### Testing & Quality Assurance
+
+- **pytest**: Feature-rich testing framework
+- **pytest-django**: Django-specific testing utilities
+- **Coverage.py**: Code coverage measurement
+- **pre-commit**: Git hooks framework for code quality checks
+
+### Code Quality & Formatting
+
+- **Black**: Uncompromising Python code formatter
+- **Ruff**: Extremely fast Python linter
+- **mypy**: Static type checker
+
+### Development & Deployment
+
+- **Docker**: Container platform
+- **Docker Compose**: Multi-container development environments
+- **Docker Swarm**: Container orchestration for production
+- **GitHub Actions**: CI/CD automation
+- **Neovim**: Blazingly fast, extensible code editor
+
+### Database
+
+- **PostgreSQL**: Robust relational database
+
+## 🏃 Running Locally
 
 ### Without Docker
 
@@ -92,3 +129,12 @@ docker compose -f docker-compose.local.yml run --rm django coverage html
 open htmlcov/index.html
 
 ```
+
+## ☕ Author
+
+- **Aidos Kanapyanov** ([aidos.kanapyanov2@gmail.com](mailto:aidos.kanapyanov2@gmail.com))
+- 💼 [LinkedIn Profile](https://www.linkedin.com/in/aidos-kanapyanov/)
+
+## ⚖️ License
+
+This project is licensed under the MIT License.
