@@ -59,8 +59,14 @@ jobs:
           load: false
           files: docker-compose.production.yml
           set: |
-            *.cache-from=type=gha
-            *.cache-to=type=gha,mode=max
+            django.cache-from=type=gha,scope=django-cache
+            django.cache-to=type=gha,scope=django-cache,mode=max
+            postgres.cache-from=type=gha,scope=postgres-cache
+            postgres.cache-to=type=gha,scope=postgres-cache,mode=max
+            traefik.cache-from=type=gha,scope=traefik-cache
+            traefik.cache-to=type=gha,scope=traefik-cache,mode=max
+            nginx.cache-from=type=gha,scope=nginx-cache
+            nginx.cache-to=type=gha,scope=nginx-cache,mode=max
 
   deploy:
     runs-on: ubuntu-latest
@@ -80,4 +86,3 @@ jobs:
           registry-username: ${{ secrets.DOCKERHUB_USERNAME }}
           registry-token: ${{ secrets.DOCKERHUB_TOKEN }}
           stack_name: fuel-tracker
-          env_file_base64: "${{ secrets.ENV_FILE_BASE64 }}"

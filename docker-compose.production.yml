@@ -20,6 +20,11 @@ services:
       - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
       - REDIS_URL=${REDIS_URL}
       - WEB_CONCURRENCY=${WEB_CONCURRENCY}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_USER=${POSTGRES_USER}
     volumes:
       - production_django_media:/app/judo_platform/media
     depends_on:
@@ -38,8 +43,6 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_PORT=${POSTGRES_PORT}
       - POSTGRES_USER=${POSTGRES_USER}
-      - REDIS_URL=${REDIS_URL}
-      - WEB_CONCURRENCY=${WEB_CONCURRENCY}
     volumes:
       - production_postgres_data:/var/lib/postgresql/data
       - production_postgres_data_backups:/backups
