@@ -10,6 +10,8 @@ PRODUCTION_DOTENV_FILES = [
     PRODUCTION_DOTENVS_DIR / ".postgres",
     PRODUCTION_DOTENVS_DIR / ".dockerHub",
     PRODUCTION_DOTENVS_DIR / ".githubToken",
+    PRODUCTION_DOTENVS_DIR / ".imageNames",
+    PRODUCTION_DOTENVS_DIR / ".digitalOcean",
 ]
 DOTENV_FILE = BASE_DIR / ".env"
 
