@@ -4,58 +4,67 @@ volumes:
   production_traefik: {}
   production_django_media: {}
 
-
-
 services:
   django:
     build:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
-
-    image: fuel_tracker_production_django
+    image: "${DJANGO_IMAGE}"
+    environment:
+      - DJANGO_ACCOUNT_ALLOW_REGISTRATION=${DJANGO_ACCOUNT_ALLOW_REGISTRATION}
+      - DJANGO_ADMIN_URL=${DJANGO_ADMIN_URL}
+      - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DJANGO_SECURE_SSL_REDIRECT=${DJANGO_SECURE_SSL_REDIRECT}
+      - DJANGO_SERVER_EMAIL=${DJANGO_SERVER_EMAIL}
+      - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
+      - REDIS_URL=${REDIS_URL}
+      - WEB_CONCURRENCY=${WEB_CONCURRENCY}
     volumes:
-      - production_django_media:/app/fuel_tracker/media
+      - production_django_media:/app/judo_platform/media
     depends_on:
       - postgres
       - redis
-    env_file:
-      - ./.envs/.production/.django
-      - ./.envs/.production/.postgres
     command: /start
 
   postgres:
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
-    image: fuel_tracker_production_postgres
+    image: "${POSTGRES_IMAGE}"
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - REDIS_URL=${REDIS_URL}
+      - WEB_CONCURRENCY=${WEB_CONCURRENCY}
     volumes:
       - production_postgres_data:/var/lib/postgresql/data
       - production_postgres_data_backups:/backups
-    env_file:
-      - ./.envs/.production/.postgres
 
   traefik:
     build:
       context: .
       dockerfile: ./compose/production/traefik/Dockerfile
-    image: fuel_tracker_production_traefik
+    image: "${TRAEFIK_IMAGE}"
     depends_on:
       - django
     volumes:
       - production_traefik:/etc/traefik/acme
     ports:
-      - '0.0.0.0:80:80'
-      - '0.0.0.0:443:443'
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
 
   redis:
     image: docker.io/redis:6
-
 
   nginx:
     build:
       context: .
       dockerfile: ./compose/production/nginx/Dockerfile
-    image: fuel_tracker_production_nginx
+    image: "${NGINX_IMAGE}"
     depends_on:
       - django
     volumes:
