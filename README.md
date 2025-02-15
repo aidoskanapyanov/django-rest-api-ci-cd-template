@@ -20,6 +20,9 @@ For detailed information about the project, please check:
 - [🚀 Continuous Delivery Setup](docs/continuous-delivery.md)<br>
   Docker image build, DockerHub publishing, and DigitalOcean Docker Swarm deployment
 
+- [🎨 Style Guide](docs/style-guide.md)<br>
+  Project code style guide: commit messages, release versioning
+
 ## 🛠️ Tech Stack
 
 ### Backend Framework & API
