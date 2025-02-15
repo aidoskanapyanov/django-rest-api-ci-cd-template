@@ -1,6 +1,6 @@
 # Airplane Fuel Tracker REST API with Django
 
-Django REST API for managing KAMI Airlines aircraft fuel
+Django REST API for managing Airlines aircraft fuel
 consumption and flight duration calculations.
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)

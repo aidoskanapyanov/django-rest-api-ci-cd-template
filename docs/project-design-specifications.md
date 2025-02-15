@@ -2,7 +2,7 @@
 
 ## Overview
 
-KAMI Airlines requires a RESTful API to manage and calculate fuel
+Airlines requires a RESTful API to manage and calculate fuel
 consumption for 10 different airplanes.
 The system will allow users to input airplane details and passenger assumptions,
 and compute fuel consumption and maximum flight duration.
