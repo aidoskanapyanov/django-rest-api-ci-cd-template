@@ -1,0 +1,36 @@
+name: release
+
+on:
+  workflow_run:
+    workflows: [deployment]
+    types:
+      - completed
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  release:
+    name: Create a gh release
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    steps:
+      - name: Setup | Checkout Repository at workflow sha
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+
+      - name: Setup | Force correct release branch on workflow sha
+        run: |
+          git checkout -B ${{ github.ref_name }} ${{ github.sha }}
+
+      - name: Use Python Semantic Release to prepare release
+        id: release
+        uses: python-semantic-release/python-semantic-release@v8.3.0
+        with:
+          github_token: ${{ secrets.ACCESS_TOKEN_GITHUB }}
+          git_committer_name: "github-actions[bot]"
+          git_committer_email: "github-actions[bot]@users.noreply.github.com"
