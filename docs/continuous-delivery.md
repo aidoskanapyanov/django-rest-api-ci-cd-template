@@ -50,6 +50,27 @@ You can manually trigger a deployment using GitHub CLI:
 gh workflow run deployment
 ```
 
+## Release Workflow
+
+The release workflow can be triggered:
+
+- Automatically after a successful deployment workflow
+- Manually using GitHub CLI:
+
+```bash
+gh workflow run release
+```
+
+This workflow:
+
+- Analyzes conventional commit messages since last release
+- Determines the next version number based on commit types
+- Creates a new GitHub release
+- Generates and updates the changelog
+- Tags the release in Git
+
+The release workflow depends on proper conventional commit messages as described in the style guide.
+
 ## Required Secrets
 
 The following secrets must be configured in GitHub:
