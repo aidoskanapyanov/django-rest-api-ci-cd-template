@@ -1,6 +1,24 @@
 # CHANGELOG
 
 
+## v0.1.1 (2025-02-16)
+
+### Bug Fixes
+
+- **cd**: Remove duplicated release acton
+  ([`8de9414`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/8de9414f23401816a2de50b684ae515150f0a0a2))
+
+### Chores
+
+- Remove unused auth-token endpoint
+  ([`b41b713`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/b41b7132ecc267c11f0f63e23242136d8fdd1bbb))
+
+### Documentation
+
+- Remove kami name [skip ci]
+  ([`7bd417f`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/7bd417f84bc207a2dca6ed714d2a519c703949b3))
+
+
 ## v0.1.0 (2025-02-15)
 
 ### Bug Fixes
