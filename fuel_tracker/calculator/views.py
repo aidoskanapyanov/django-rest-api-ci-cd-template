@@ -1,3 +1,4 @@
+from drf_spectacular.utils import OpenApiResponse
 from drf_spectacular.utils import extend_schema
 from rest_framework import serializers
 from rest_framework import viewsets
@@ -12,6 +13,7 @@ from fuel_tracker.calculator.models import FuelCalculationRecord
 from fuel_tracker.calculator.serializers import AirplaneSerializer
 from fuel_tracker.calculator.serializers import ConfigurationSerializer
 from fuel_tracker.calculator.serializers import FuelCalculationSerializer
+from fuel_tracker.calculator.serializers import ResultSerializer
 from fuel_tracker.calculator.services import FuelCalculationService
 
 
@@ -47,7 +49,17 @@ class AirplaneViewSet(viewsets.ModelViewSet):
         self.cache_manager = FuelCalculationCache()
         self.config_manager = ConfigurationManager()
 
-    @extend_schema(request=FuelCalculationSerializer, methods=["POST"])
+    @extend_schema(
+        request=FuelCalculationSerializer,
+        responses={
+            201: OpenApiResponse(
+                response=ResultSerializer,
+                description="Calculation result",
+            ),
+            400: OpenApiResponse(description="Bad request"),
+        },
+        methods=["POST"],
+    )
     @action(detail=True, methods=["post"])
     def calculate_fuel(self, request, pk=None):
         airplane = self.get_object()

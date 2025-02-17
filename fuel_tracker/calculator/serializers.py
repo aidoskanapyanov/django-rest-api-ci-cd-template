@@ -31,3 +31,10 @@ class ConfigOverrideSerializer(serializers.Serializer):
 class FuelCalculationSerializer(serializers.Serializer):
     passengers = serializers.IntegerField(min_value=0)
     config_override = ConfigOverrideSerializer(required=False)
+
+
+class ResultSerializer(serializers.Serializer):
+    fuel_capacity = serializers.FloatField()
+    fuel_consumption_per_minute = serializers.FloatField()
+    flight_duration = serializers.FloatField()
+    time_unit = serializers.CharField()
