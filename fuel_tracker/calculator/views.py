@@ -1,5 +1,6 @@
 from drf_spectacular.utils import OpenApiResponse
 from drf_spectacular.utils import extend_schema
+from drf_spectacular.utils import extend_schema_view
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -17,6 +18,21 @@ from fuel_tracker.calculator.serializers import ResultSerializer
 from fuel_tracker.calculator.services import FuelCalculationService
 
 
+@extend_schema_view(
+    list=extend_schema(
+        description="Returns the most recent configuration settings. "
+        "Only returns a single configuration record, "
+        "ordered by creation date.",
+    ),
+    create=extend_schema(
+        description="Creates a new configuration with custom parameters "
+        "for fuel calculations. Previous configurations "
+        "are retained but not used.",
+    ),
+    retrieve=extend_schema(
+        description="Returns a specific configuration by ID.",
+    ),
+)
 class ConfigurationViewSet(viewsets.ModelViewSet):
     queryset = Configuration.objects.all()
     http_method_names = ["get", "post", "head"]  # Disable PUT/PATCH/DELETE
@@ -26,12 +42,40 @@ class ConfigurationViewSet(viewsets.ModelViewSet):
         return self.queryset.order_by("-created_at")[:1]  # pyright: ignore [reportOptionalMemberAccess]
 
 
+@extend_schema_view(
+    list=extend_schema(
+        description=("Returns a list of all historical fuel calculation records."),
+    ),
+    retrieve=extend_schema(
+        description="Returns a specific fuel calculation record by ID, "
+        "including the airplane details and configuration snapshot used.",
+    ),
+)
 class FuelCalculationRecordViewSet(viewsets.ModelViewSet):
     queryset = FuelCalculationRecord.objects.all()
     http_method_names = ["get"]
     serializer_class = FuelCalculationRecordModelSerializer
 
 
+@extend_schema_view(
+    list=extend_schema(
+        description=("Returns a list of all registered airplanes in the system."),
+    ),
+    create=extend_schema(
+        description="Creates a new airplane with a unique ID and maximum "
+        "passenger capacity.",
+    ),
+    retrieve=extend_schema(
+        description="Returns a specific airplane's details by ID.",
+    ),
+    update=extend_schema(
+        description="Updates all fields of an existing airplane.",
+    ),
+    partial_update=extend_schema(
+        description="Partially updates an existing airplane's fields.",
+    ),
+    destroy=extend_schema(description="Removes an airplane from the system."),
+)
 class AirplaneViewSet(viewsets.ModelViewSet):
     queryset = Airplane.objects.all()
     serializer_class = AirplaneSerializer
@@ -52,6 +96,24 @@ class AirplaneViewSet(viewsets.ModelViewSet):
             400: OpenApiResponse(description="Bad request"),
         },
         methods=["POST"],
+        description="""
+        Calculates fuel metrics for a specific airplane.
+
+        Computes:
+        - Fuel tank capacity (based on airplane ID)
+        - Fuel consumption per minute (based on passenger count
+          and airplane ID)
+        - Maximum flight duration
+
+        The calculation uses either the default configuration or custom
+        overrides provided in the request. Results are cached for identical
+        input parameters.
+
+        Returns HTTP 400 if:
+        - Passenger count exceeds airplane's maximum capacity
+        - Configuration validation fails
+        - Calculation parameters are invalid
+        """,
     )
     @action(detail=True, methods=["post"])
     def calculate_fuel(self, request, pk=None):
