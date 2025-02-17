@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.2.2 (2025-02-17)
+
+### Bug Fixes
+
+- **ci**: Use different cache scopes for test and deploy builds
+  ([`26b1ea0`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/26b1ea05bfb5e1cd9510cd96abe663a0166a0a63))
+
+
 ## v0.2.1 (2025-02-17)
 
 ### Bug Fixes
