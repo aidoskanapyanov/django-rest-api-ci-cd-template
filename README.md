@@ -114,7 +114,7 @@ coverage run -m pytest
 coverage html
 ```
 
-### With Docker
+### 🐋 With Docker
 
 #### Setup and Run
 
