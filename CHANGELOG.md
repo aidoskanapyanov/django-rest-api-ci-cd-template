@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.1.2 (2025-02-17)
+
+### Bug Fixes
+
+- **serializers**: Fix route request body openapi schema, fix related tests
+  ([`8d6d47b`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/8d6d47b5895034ab90b390e00b7f0b9293288d74))
+
+
 ## v0.1.1 (2025-02-16)
 
 ### Bug Fixes
