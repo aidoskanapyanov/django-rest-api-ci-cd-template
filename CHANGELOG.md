@@ -1,6 +1,29 @@
 # CHANGELOG
 
 
+## v0.2.4 (2025-02-17)
+
+### Code Style
+
+- Add whale emoji to 'with docker' running instructions
+  ([`758c176`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/758c1762c97240f1ffbe7efc70e6f14a0ebe9db3))
+
+### Continuous Integration
+
+- Add development deployment env in gh repo
+  ([`9fa0dfa`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/9fa0dfa2387ecb952a15f69b11b24cd264a7fbe7))
+
+### Documentation
+
+- Add buymecoffee link
+  ([`315d09a`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/315d09aa60dfd5333d06ae43ccad28aa1c0addc2))
+
+### Performance Improvements
+
+- Serve swagger ui staticfiles
+  ([`63aecc8`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/63aecc8d2ac08b1761c527594868f1341561f5e6))
+
+
 ## v0.2.3 (2025-02-17)
 
 ### Bug Fixes
