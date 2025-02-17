@@ -7,6 +7,7 @@ from django.core.cache import cache
 from rest_framework.test import APIClient
 from rest_framework.test import APIRequestFactory
 
+from fuel_tracker.calculator.cache_manager import FuelCalculationCache
 from fuel_tracker.calculator.models import Airplane
 from fuel_tracker.calculator.models import Configuration
 from fuel_tracker.calculator.models import FuelCalculationRecord
@@ -251,8 +252,8 @@ class TestAirplaneViewSet:
         cache_key = "fuel:some_hash"
 
         with patch.object(
-            AirplaneViewSet,
-            "_generate_cache_key",
+            FuelCalculationCache,
+            "generate_key",
             return_value=cache_key,
         ):
             # First call
