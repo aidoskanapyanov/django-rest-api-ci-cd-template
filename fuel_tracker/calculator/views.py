@@ -3,6 +3,7 @@ import json
 import math
 
 from django.core.cache import cache
+from drf_spectacular.utils import extend_schema
 from rest_framework import serializers
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -26,9 +27,20 @@ class AirplaneSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class ConfigOverrideSerializer(serializers.Serializer):
+    fuel_capacity_multiplier = serializers.FloatField(required=False)
+    log_base = serializers.ChoiceField(choices=["10", "e"], required=False)
+    passenger_fuel_impact = serializers.FloatField(required=False)
+    fuel_consumption_coefficient = serializers.FloatField(required=False)
+    time_unit = serializers.ChoiceField(
+        choices=["minute", "hour", "day"],
+        required=False,
+    )
+
+
 class FuelCalculationSerializer(serializers.Serializer):
     passengers = serializers.IntegerField(min_value=0)
-    config_override = serializers.JSONField(required=False, default=dict)
+    config_override = ConfigOverrideSerializer(required=False)
 
 
 class ConfigurationViewSet(viewsets.ModelViewSet):
@@ -44,6 +56,7 @@ class AirplaneViewSet(viewsets.ModelViewSet):
     queryset = Airplane.objects.all()
     serializer_class = AirplaneSerializer
 
+    @extend_schema(request=FuelCalculationSerializer, methods=["POST"])
     @action(detail=True, methods=["post"])
     def calculate_fuel(self, request, pk=None):
         airplane = self.get_object()

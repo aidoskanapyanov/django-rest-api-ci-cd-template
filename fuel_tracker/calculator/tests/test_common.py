@@ -220,7 +220,7 @@ class TestAirplaneViewSet:
     def setup(self):
         cache.clear()
 
-    def test_calculate_fuel(self, api_client, airplane, config):
+    def test_calculate_fuel(self, api_client, airplane):
         data = {"passengers": 50}
         response = api_client.post(
             f"/api/airplanes/{airplane.pk}/calculate_fuel/",
@@ -236,7 +236,6 @@ class TestAirplaneViewSet:
         self,
         api_client,
         airplane,
-        config,
     ):
         data = {"passengers": 150}  # Exceeds max_passengers
         response = api_client.post(
@@ -247,7 +246,7 @@ class TestAirplaneViewSet:
         assert response.status_code == HTTPStatus.BAD_REQUEST
         assert "error" in response.data
 
-    def test_calculate_fuel_caching(self, api_client, airplane, config):
+    def test_calculate_fuel_caching(self, api_client, airplane):
         data = {"passengers": 50}
         cache_key = "fuel:some_hash"
 
@@ -284,7 +283,6 @@ class TestAirplaneViewSet:
         self,
         api_client,
         airplane,
-        config,
         time_unit,
         expected_status,
     ):
@@ -300,7 +298,6 @@ class TestAirplaneViewSet:
         self,
         api_client,
         airplane,
-        config,
     ):
         base_data = {"passengers": 50}
 
@@ -363,11 +360,10 @@ class TestAirplaneViewSet:
             ("minute", "day", 1 / 1440),
         ],
     )
-    def test_calculate_fuel_time_unit_conversions(  # noqa: PLR0913
+    def test_calculate_fuel_time_unit_conversions(
         self,
         api_client,
         airplane,
-        config,
         from_unit,
         to_unit,
         conversion_factor,
@@ -418,7 +414,6 @@ class TestAirplaneViewSet:
         self,
         api_client,
         airplane,
-        config,
     ):
         data = {
             "passengers": 50,
@@ -441,7 +436,6 @@ class TestAirplaneViewSet:
         self,
         api_client,
         airplane,
-        config,
     ):
         data = {
             "passengers": 50,
@@ -457,7 +451,10 @@ class TestAirplaneViewSet:
         )
 
         assert response.status_code == HTTPStatus.BAD_REQUEST
-        assert response.data == {"error": "Invalid log base"}
+        assert (
+            response.data["config_override"]["log_base"][0]
+            == '"bananas" is not a valid choice.'
+        )
 
 
 class TestSerializers:
@@ -510,7 +507,7 @@ def sample_calculation_data(airplane, config):
             "fuel_capacity_multiplier": config.fuel_capacity_multiplier,
             "log_base": config.log_base,
             "passenger_fuel_impact": config.passenger_fuel_impact,
-            "fuel_consumption_coefficient": config.fuel_consumption_coefficient,
+            "fuel_consumption_coefficient": (config.fuel_consumption_coefficient),
             "time_unit": config.time_unit,
         },
     }
@@ -530,7 +527,6 @@ class TestIntegration:
         self,
         api_client,
         airplane,
-        config,
         sample_calculation_data,
     ):
         # Get initial record count
