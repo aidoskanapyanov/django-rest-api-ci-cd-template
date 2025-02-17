@@ -1,6 +1,26 @@
 # CHANGELOG
 
 
+## v0.2.3 (2025-02-17)
+
+### Bug Fixes
+
+- **ci**: Remove unnecessary check for commit message "skip deploy"
+  ([`31f3758`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/31f3758cfc729cd8e77891e1631beda074700794))
+
+### Documentation
+
+- **views**: Add descriptions to viewset routes and actions
+  ([`5b494d0`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/5b494d0548398d9c917b739cc845b3c0c38021fd))
+
+### Refactoring
+
+- Move results serializer to serializers.py [skip deploy]
+  ([`caae95c`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/caae95c7dddd2d09c386bbb32a3affd9211bb28c))
+
+ci: allow skipping deployment
+
+
 ## v0.2.2 (2025-02-17)
 
 ### Bug Fixes
