@@ -7,6 +7,8 @@ consumption and flight duration calculations.
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 ![coverage badge](./coverage.svg)
 
+[<img src="images/buymecoffee.png"  alt="buymeacoffee-white-badge" style="width: 160px;">](https://www.buymeacoffee.com/aidosk)
+
 ## 📚 Documentation
 
 For detailed information about the project, please check:
