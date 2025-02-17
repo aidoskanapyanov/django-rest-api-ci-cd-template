@@ -20,9 +20,17 @@ from fuel_tracker.calculator.services import FuelCalculationService
 
 @extend_schema_view(
     list=extend_schema(
-        description="Returns the most recent configuration settings. "
-        "Only returns a single configuration record, "
-        "ordered by creation date.",
+        description="""
+        Returns the most recent configuration settings.
+        Only returns a single configuration record, ordered by creation date.
+
+        By default:
+        - fuel_capacity_multiplier=200.0
+        - log_base='10'
+        - passenger_fuel_impact=0.002
+        - fuel_consumption_coefficient=0.80
+        - time_unit='minute' are used.
+        """,
     ),
     create=extend_schema(
         description="Creates a new configuration with custom parameters "
