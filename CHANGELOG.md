@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.2.1 (2025-02-17)
+
+### Bug Fixes
+
+- **schema**: Response schema for fuel calculation
+  ([`d526894`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/d52689476c1ccb65db3a173364e54e50f1b9d354))
+
+
 ## v0.2.0 (2025-02-17)
 
 ### Features
