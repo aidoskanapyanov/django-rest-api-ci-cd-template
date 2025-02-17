@@ -1,6 +1,5 @@
 from drf_spectacular.utils import OpenApiResponse
 from drf_spectacular.utils import extend_schema
-from rest_framework import serializers
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -12,6 +11,7 @@ from fuel_tracker.calculator.models import Configuration
 from fuel_tracker.calculator.models import FuelCalculationRecord
 from fuel_tracker.calculator.serializers import AirplaneSerializer
 from fuel_tracker.calculator.serializers import ConfigurationSerializer
+from fuel_tracker.calculator.serializers import FuelCalculationRecordModelSerializer
 from fuel_tracker.calculator.serializers import FuelCalculationSerializer
 from fuel_tracker.calculator.serializers import ResultSerializer
 from fuel_tracker.calculator.services import FuelCalculationService
@@ -24,13 +24,6 @@ class ConfigurationViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return self.queryset.order_by("-created_at")[:1]  # pyright: ignore [reportOptionalMemberAccess]
-
-
-class FuelCalculationRecordModelSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = FuelCalculationRecord
-        fields = "__all__"
-        depth = 1
 
 
 class FuelCalculationRecordViewSet(viewsets.ModelViewSet):

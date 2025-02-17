@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from fuel_tracker.calculator.models import Airplane
 from fuel_tracker.calculator.models import Configuration
+from fuel_tracker.calculator.models import FuelCalculationRecord
 
 
 class ConfigurationSerializer(serializers.ModelSerializer):
@@ -38,3 +39,10 @@ class ResultSerializer(serializers.Serializer):
     fuel_consumption_per_minute = serializers.FloatField()
     flight_duration = serializers.FloatField()
     time_unit = serializers.CharField()
+
+
+class FuelCalculationRecordModelSerializer(serializers.ModelSerializer):
+    class Meta:  # pyright: ignore [reportIncompatibleVariableOverride]
+        model = FuelCalculationRecord
+        fields = "__all__"
+        depth = 1
