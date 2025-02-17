@@ -60,14 +60,14 @@ jobs:
           load: false
           files: docker-compose.production.yml
           set: |
-            django.cache-from=type=gha,scope=django-cache
-            django.cache-to=type=gha,scope=django-cache,mode=max
-            postgres.cache-from=type=gha,scope=postgres-cache
-            postgres.cache-to=type=gha,scope=postgres-cache,mode=max
-            traefik.cache-from=type=gha,scope=traefik-cache
-            traefik.cache-to=type=gha,scope=traefik-cache,mode=max
-            nginx.cache-from=type=gha,scope=nginx-cache
-            nginx.cache-to=type=gha,scope=nginx-cache,mode=max
+            django.cache-from=type=gha,scope=deploy-django-cache
+            django.cache-to=type=gha,scope=deploy-django-cache,mode=max
+            postgres.cache-from=type=gha,scope=deploy-postgres-cache
+            postgres.cache-to=type=gha,scope=deploy-postgres-cache,mode=max
+            traefik.cache-from=type=gha,scope=deploy-traefik-cache
+            traefik.cache-to=type=gha,scope=deploy-traefik-cache,mode=max
+            nginx.cache-from=type=gha,scope=deploy-nginx-cache
+            nginx.cache-to=type=gha,scope=deploy-nginx-cache,mode=max
 
   deploy:
     runs-on: ubuntu-latest
