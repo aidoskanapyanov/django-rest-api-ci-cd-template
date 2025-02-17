@@ -558,3 +558,50 @@ class TestIntegration:
         )
         assert record.flight_duration == response.data["flight_duration"]
         assert record.time_unit == response.data["time_unit"]
+
+
+@pytest.mark.django_db
+def test_calculation_with_different_configurations(client):
+    # Create test airplane
+    airplane = Airplane.objects.create(
+        airplane_id=100,
+        name="Test Airplane",
+        max_passengers=200,
+    )
+
+    # First calculation without any configuration (using defaults)
+    response1 = client.post(
+        f"/api/airplanes/{airplane.pk}/calculate_fuel/",
+        {"passengers": 100},
+    )
+    assert response1.status_code == HTTPStatus.OK
+    result1 = response1.json()
+
+    # Create a new configuration with different values
+    Configuration.objects.create(
+        fuel_capacity_multiplier=300.0,
+        log_base="e",
+        passenger_fuel_impact=0.003,
+        fuel_consumption_coefficient=1.0,
+        time_unit="hour",
+    )
+
+    # Second calculation with the new configuration
+    response2 = client.post(
+        f"/api/airplanes/{airplane.pk}/calculate_fuel/",
+        {"passengers": 100},
+    )
+    assert response2.status_code == HTTPStatus.OK
+    result2 = response2.json()
+
+    # Verify that results are different
+    assert result1["fuel_capacity"] != result2["fuel_capacity"]
+    assert (
+        result1["fuel_consumption_per_minute"] != result2["fuel_consumption_per_minute"]
+    )
+    assert result1["flight_duration"] != result2["flight_duration"]
+    assert result1["time_unit"] != result2["time_unit"]
+
+    # Verify specific values
+    assert result1["time_unit"] == "minute"
+    assert result2["time_unit"] == "hour"
