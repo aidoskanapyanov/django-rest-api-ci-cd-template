@@ -1,7 +1,9 @@
 # Airplane Fuel Tracker REST API with Django
 
-Django REST API for managing Airlines aircraft fuel
-consumption and flight duration calculations.
+A Django REST API template for scalable applications, featuring modern CI/CD,
+Docker Swarm deployments with zero-downtime SSL, automated changelogs, dynamic
+OpenAPI/Swagger UI documentation, and integrated tests with coverage reports,
+artifacts, and badges.
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
