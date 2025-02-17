@@ -71,6 +71,9 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: Development
+      url: "https://fuel-tracker-rest-api-django.dev.aidosk-dev.kz/api/docs/"
     needs:
       - build-and-push-images
     steps:
