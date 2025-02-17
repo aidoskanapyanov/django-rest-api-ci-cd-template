@@ -1,6 +1,27 @@
 # CHANGELOG
 
 
+## v0.2.0 (2025-02-17)
+
+### Features
+
+- Add api route for list/detail of calculation results
+  ([`f564b76`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/f564b76a1377c9245874e6aede0434cc43269f7b))
+
+### Refactoring
+
+- Calculate fuel endpoint into smaller modules
+  ([`405e395`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/405e3951fb98380861b8b0a76127ad690119879c))
+
+- Put serializers into their own file
+  ([`f54b069`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/f54b0697a86a56d9473f4f79842b435a62579c54))
+
+### Testing
+
+- Fuel calculations use latest configuration resource
+  ([`e6bdcdd`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/e6bdcddd725b42a3a10382b6ae971c950cf96cb0))
+
+
 ## v0.1.2 (2025-02-17)
 
 ### Bug Fixes
