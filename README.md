@@ -9,8 +9,9 @@ artifacts, and badges.
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
-![coverage badge](./coverage.svg)
-![release badge](./release.svg)
+![coverage badge](.github/badges/coverage.svg)
+![release badge](.github/badges/release.svg)
+![license badge](.github/badges/license.svg)
 
 [<img src="images/buymecoffee.png"  alt="buymeacoffee-white-badge" style="width: 160px;">](https://www.buymeacoffee.com/aidosk)
 
