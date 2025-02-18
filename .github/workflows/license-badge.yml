@@ -1,0 +1,49 @@
+name: license
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  release:
+    name: Create a gh release
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    steps:
+      - name: Setup | Checkout Repository at workflow sha
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+
+      - name: Add release badge
+        uses: emibcn/badge-action@v2.0.2
+        with:
+          label: "license"
+          status: "MIT"
+          color: "orange"
+          path: "license.svg"
+
+      - name: Verify Changed files
+        uses: tj-actions/verify-changed-files@v18
+        id: changed_files
+        with:
+          files: license.svg
+
+      - name: Commit files
+        if: steps.changed_files.outputs.files_changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add license.svg
+          git commit -m "Updated license.svg [skip ci]"
+
+      - name: Push changes
+        if: steps.changed_files.outputs.files_changed == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.ACCESS_TOKEN_GITHUB }}
+          branch: ${{ github.ref }}
