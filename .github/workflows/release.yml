@@ -34,3 +34,33 @@ jobs:
           github_token: ${{ secrets.ACCESS_TOKEN_GITHUB }}
           git_committer_name: "github-actions[bot]"
           git_committer_email: "github-actions[bot]@users.noreply.github.com"
+
+      - name: Add release badge
+        uses: emibcn/badge-action@v2.0.2
+        if: steps.release.outputs.released == 'true'
+        with:
+          label: "release"
+          status: ${{ steps.release.outputs.tag }}
+          color: "blue"
+          path: "release.svg"
+
+      - name: Verify Changed files
+        uses: tj-actions/verify-changed-files@v18
+        id: changed_files
+        with:
+          files: release.svg
+
+      - name: Commit files
+        if: steps.changed_files.outputs.files_changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add release.svg
+          git commit -m "Updated release.svg [skip ci]"
+
+      - name: Push changes
+        if: steps.changed_files.outputs.files_changed == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.ACCESS_TOKEN_GITHUB }}
+          branch: ${{ github.ref }}
