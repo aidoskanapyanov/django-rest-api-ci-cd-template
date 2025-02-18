@@ -78,6 +78,8 @@ jobs:
 
       - name: Coverage Badge
         uses: tj-actions/coverage-badge-py@v2
+        with:
+          output: .github/badges/coverage.svg
 
       - name: Verify Changed files
         uses: tj-actions/verify-changed-files@v18
