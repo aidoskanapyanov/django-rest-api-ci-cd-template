@@ -1,6 +1,41 @@
 # CHANGELOG
 
 
+## v0.2.5 (2025-02-18)
+
+### Bug Fixes
+
+- **ci**: Coverage.svg file location
+  ([`ab6555a`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/ab6555a4b4e55123be03972607dbb09e8d8b778e))
+
+### Continuous Integration
+
+- **release**: Test run for release badge
+  ([`0960543`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/096054325fd11a4c76f1a29520235eeabbf76cfe))
+
+### Documentation
+
+- Add license badge [skip ci]
+  ([`0973ee1`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/0973ee16231fd1efd5e151c1dd4c977c6d742c42))
+
+- Add release badge to readme.md
+  ([`e6aef8c`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/e6aef8cf1a324fb1ed03cefb4fe06e588688b8ed))
+
+- More detailed explanation on what configuration view returns and what default values are used
+  ([`b1bdc7d`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/b1bdc7d9b4f67e7f89516ff55d4fd0476ec0c8fe))
+
+- Update readme project description
+  ([`f0cad0e`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/f0cad0eb3a0804bffdd413ac90685cc1a5b50314))
+
+- **readme**: Add project-thumbnail image
+  ([`df8de28`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/df8de28cbbfbb8a1a17e7d07fea755a02edb3718))
+
+### Refactoring
+
+- **badges**: Move badges to .github dir
+  ([`99d9d0a`](https://github.com/aidoskanapyanov/fuel-tracker-rest-api-django/commit/99d9d0a14d64bd1df1a2b6025d82ae6fcaca5412))
+
+
 ## v0.2.4 (2025-02-17)
 
 ### Code Style
