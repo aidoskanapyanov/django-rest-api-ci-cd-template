@@ -1,6 +1,6 @@
 [<img src="images/project-thumbnail.png"  alt="Airplane Fuel Tracker REST API with Django">](https://fuel-tracker-rest-api-django.dev.aidosk-dev.kz/api/docs/)
 
-# Airplane Fuel Tracker REST API with Django
+# Django REST API CI CD Template
 
 A Django REST API template for scalable applications, featuring modern CI/CD,
 Docker Swarm deployments with zero-downtime SSL, automated changelogs, dynamic
